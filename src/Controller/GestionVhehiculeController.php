@@ -7,11 +7,13 @@ use App\Entity\Vehicule;
 use App\Form\VehiculeType;
 use App\Form\MarqueType;
 use App\Form\PaysType;
+use App\Repository\VehiculeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+
 
 class GestionVhehiculeController extends AbstractController
 {
@@ -132,5 +134,18 @@ class GestionVhehiculeController extends AbstractController
     {
         return $this->render('GestionVehicules/voirvehicule.html.twig',['levehicule' => $vehicule]);
     }
+
+    /**
+     * @Route("/vehicule/voirvehicules", name="vehiculesvoirid")
+     */
+    public function VoirVehicules( 
+        VehiculeRepository $vehiculeRepository)
+        {
+            $vehicules = $vehiculeRepository->findAll();
+            return $this->render('GestionVehicules/voirvehicules.html.twig'
+            ,['lesvehicules' => $vehicules]);
+        }
+    
+        
     
 }
