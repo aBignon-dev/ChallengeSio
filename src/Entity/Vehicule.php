@@ -27,6 +27,12 @@ class Vehicule
      */
     private $consommation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="lesvehicules")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lamarque;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Vehicule
     public function setConsommation(int $consommation): self
     {
         $this->consommation = $consommation;
+
+        return $this;
+    }
+
+    public function getLamarque(): ?Marque
+    {
+        return $this->lamarque;
+    }
+
+    public function setLamarque(?Marque $lamarque): self
+    {
+        $this->lamarque = $lamarque;
 
         return $this;
     }
