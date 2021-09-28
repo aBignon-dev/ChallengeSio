@@ -130,8 +130,7 @@ class GestionVhehiculeController extends AbstractController
     public function VoirVehicule(Vehicule $vehicule, 
     EntityManagerInterface $manager)
     {
-        return $this->render('GestionVehicules
-        /voirvehicule.html.twig',['levehicule' => $vehicule]);
+        return $this->render('GestionVehicules/voirvehicule.html.twig',['levehicule' => $vehicule]);
     }
     
 }
