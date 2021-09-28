@@ -73,4 +73,9 @@ class Vehicule
 
         return $this;
     }
+
+    public function CalculCoutConsommation(int $tarif)
+    {
+        return $this->consommation *$tarif;
+    }
 }

@@ -1,0 +1,12 @@
+{{lepays.getNom()}}
+<BR>
+{% for unemarque in lepays.getLesmarques()%}
+
+{{unemarque.getNom()}}  : 
+
+{% for unvehicule in unemarque.getLesvehicules()%}
+
+{{unvehicule.getNom()}}  , {{unvehicule.CalculCoutConsommation(5)}} ,
+{% endfor %}
+<BR>
+{% endfor %}

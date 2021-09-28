@@ -146,6 +146,14 @@ class GestionVhehiculeController extends AbstractController
             ,['lesvehicules' => $vehicules]);
         }
     
-        
+       /**
+     * @Route("/vehicule/voirpays/{id}", name="paysvoirid")
+     */
+    public function Voirpays( Pays $pays,
+    EntityManagerInterface $manager)
+        {
+             return $this->render('GestionVehicules/voirpays.html.twig'
+            ,['lepays' => $pays]);
+        } 
     
 }
