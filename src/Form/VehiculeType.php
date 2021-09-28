@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Vehicule;
+use App\Entity\Marque;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class VehiculeType extends AbstractType
 {

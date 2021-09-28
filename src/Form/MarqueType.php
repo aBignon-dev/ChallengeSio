@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Marque;
+use App\Entity\Pays;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MarqueType extends AbstractType
 {
