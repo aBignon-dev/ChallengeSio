@@ -25,9 +25,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="bool")
      */
-    private $roles = [];
+    private $roles;
 
     /**
      * @var string The hashed password
@@ -49,6 +49,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToOne(targetEntity=equipe::class, inversedBy="lesuser")
      */
     private $lequipe;
+
+    
 
     public function getId(): ?int
     {
@@ -88,16 +90,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRoles(): bool
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(bool $roles): self
     {
         $this->roles = $roles;
 
