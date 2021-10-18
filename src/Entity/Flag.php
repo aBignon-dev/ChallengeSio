@@ -22,31 +22,36 @@ class Flag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $TextQuote;
+    private $titreQuestion;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $textQuote;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $Points;
+    private $points;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $TextReponse;
+    private $textReponse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="leFlag")
      */
-    private $TitreQuestion;
+    private $lesReponces;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lesreponse")
+     * @ORM\Column(type="integer")
      */
-    private $leflag;
+    private $nID;
 
     public function __construct()
     {
-        $this->leflag = new ArrayCollection();
+        $this->lesReponces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,50 +59,50 @@ class Flag
         return $this->id;
     }
 
-    public function getTextQuote(): ?string
+    public function getTitreQuestion(): ?string
     {
-        return $this->TextQuote;
+        return $this->titreQuestion;
     }
 
-    public function setTextQuote(string $TextQuote): self
+    public function setTitreQuestion(string $titreQuestion): self
     {
-        $this->TextQuote = $TextQuote;
+        $this->titreQuestion = $titreQuestion;
+
+        return $this;
+    }
+
+    public function getTetQuote(): ?string
+    {
+        return $this->TetQuote;
+    }
+
+    public function setTextQuote(string $TetQuote): self
+    {
+        $this->textQuote = $textQuote;
 
         return $this;
     }
 
     public function getPoints(): ?int
     {
-        return $this->Points;
+        return $this->points;
     }
 
-    public function setPoints(int $Points): self
+    public function setPoints(int $points): self
     {
-        $this->Points = $Points;
+        $this->points = $points;
 
         return $this;
     }
 
     public function getTextReponse(): ?string
     {
-        return $this->TextReponse;
+        return $this->textReponse;
     }
 
-    public function setTextReponse(string $TextReponse): self
+    public function setTextReponse(string $textReponse): self
     {
-        $this->TextReponse = $TextReponse;
-
-        return $this;
-    }
-
-    public function getTitreQuestion(): ?string
-    {
-        return $this->TitreQuestion;
-    }
-
-    public function setTitreQuestion(string $TitreQuestion): self
-    {
-        $this->TitreQuestion = $TitreQuestion;
+        $this->textReponse = $textReponse;
 
         return $this;
     }
@@ -105,29 +110,41 @@ class Flag
     /**
      * @return Collection|Reponse[]
      */
-    public function getLeflag(): Collection
+    public function getLesReponces(): Collection
     {
-        return $this->leflag;
+        return $this->lesReponces;
     }
 
-    public function addLeflag(Reponse $leflag): self
+    public function addLesReponce(Reponse $lesReponce): self
     {
-        if (!$this->leflag->contains($leflag)) {
-            $this->leflag[] = $leflag;
-            $leflag->setLesreponse($this);
+        if (!$this->lesReponces->contains($lesReponce)) {
+            $this->lesReponces[] = $lesReponce;
+            $lesReponce->setLeFlag($this);
         }
 
         return $this;
     }
 
-    public function removeLeflag(Reponse $leflag): self
+    public function removeLesReponce(Reponse $lesReponce): self
     {
-        if ($this->leflag->removeElement($leflag)) {
+        if ($this->lesReponces->removeElement($lesReponce)) {
             // set the owning side to null (unless already changed)
-            if ($leflag->getLesreponse() === $this) {
-                $leflag->setLesreponse(null);
+            if ($lesReponce->getLeFlag() === $this) {
+                $lesReponce->setLeFlag(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNID(): ?int
+    {
+        return $this->nID;
+    }
+
+    public function setNID(int $nID): self
+    {
+        $this->nID = $nID;
 
         return $this;
     }
