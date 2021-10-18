@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FlagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Flag
      * @ORM\Column(type="string", length=255)
      */
     private $TitreQuestion;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lesreponse")
+     */
+    private $leflag;
+
+    public function __construct()
+    {
+        $this->leflag = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,36 @@ class Flag
     public function setTitreQuestion(string $TitreQuestion): self
     {
         $this->TitreQuestion = $TitreQuestion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getLeflag(): Collection
+    {
+        return $this->leflag;
+    }
+
+    public function addLeflag(Reponse $leflag): self
+    {
+        if (!$this->leflag->contains($leflag)) {
+            $this->leflag[] = $leflag;
+            $leflag->setLesreponse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLeflag(Reponse $leflag): self
+    {
+        if ($this->leflag->removeElement($leflag)) {
+            // set the owning side to null (unless already changed)
+            if ($leflag->getLesreponse() === $this) {
+                $leflag->setLesreponse(null);
+            }
+        }
 
         return $this;
     }
