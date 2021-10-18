@@ -56,3 +56,4 @@ Le Corre,Raphael,lraphael,lraphael,false
 Leheron Aubin,Lea,llea,llea,false
 Desablens,Maeva,dmaeva,dmaeva,false
 Charuel,Gaspar,cgaspard,cgaspard,false
+Admin,admin,aadmin,mot_de_passe,true
