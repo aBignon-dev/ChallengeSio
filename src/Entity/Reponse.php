@@ -18,30 +18,45 @@ class Reponse
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $NbTentative;
+    private $nbTentative;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $HeureReponse;
+    private $heureDebut;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $heureFin;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $Reussie;
+    private $reussie;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lequipe")
+     * @ORM\Column(type="integer")
      */
-    private $lasreponse;
+    private $nbIndices;
 
     /**
-     * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="leflag")
+     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lesReponses")
      */
+<<<<<<< Updated upstream
     private $lesreponse;
     
+=======
+    private $lequipe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="lesReponces")
+     */
+    private $leFlag;
+
+>>>>>>> Stashed changes
     public function getId(): ?int
     {
         return $this->id;
@@ -49,61 +64,88 @@ class Reponse
 
     public function getNbTentative(): ?int
     {
-        return $this->NbTentative;
+        return $this->nbTentative;
     }
 
-    public function setNbTentative(?int $NbTentative): self
+    public function setNbTentative(int $nbTentative): self
     {
-        $this->NbTentative = $NbTentative;
+        $this->nbTentative = $nbTentative;
 
         return $this;
     }
 
-    public function getHeureReponse(): ?\DateTimeInterface
+    public function getHeureDebut(): ?\DateTimeInterface
     {
-        return $this->HeureReponse;
+        return $this->heureDebut;
     }
 
-    public function setHeureReponse(\DateTimeInterface $HeureReponse): self
+    public function setHeureDebut(\DateTimeInterface $heureDebut): self
     {
-        $this->HeureReponse = $HeureReponse;
+        $this->heureDebut = $heureDebut;
+
+        return $this;
+    }
+
+    public function getHeureFin(): ?\DateTimeInterface
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(\DateTimeInterface $heureFin): self
+    {
+        $this->heureFin = $heureFin;
 
         return $this;
     }
 
     public function getReussie(): ?bool
     {
-        return $this->Reussie;
+        return $this->reussie;
     }
 
-    public function setReussie(bool $Reussie): self
+    public function setReussie(bool $reussie): self
     {
-        $this->Reussie = $Reussie;
+        $this->reussie = $reussie;
 
         return $this;
     }
 
-    public function getLareponse(): ?Equipe
+    public function getNbIndices(): ?int
     {
-        return $this->lareponse;
+        return $this->nbIndices;
     }
 
-    public function setLareponse(?Equipe $lareponse): self
+    public function setNbIndices(int $nbIndices): self
     {
-        $this->lareponse = $lareponse;
+        $this->nbIndices = $nbIndices;
 
         return $this;
     }
 
-    public function getLesreponse(): ?flag
+    public function getLequipe(): ?Equipe
     {
-        return $this->lesreponse;
+        return $this->lequipe;
     }
 
-    public function setLesreponse(?flag $lesreponse): self
+    public function setLequipe(?Equipe $lequipe): self
     {
-        $this->lesreponse = $lesreponse;
+        $this->lequipe = $lequipe;
 
         return $this;
     }
+<<<<<<< Updated upstream
+=======
+
+    public function getLeFlag(): ?flag
+    {
+        return $this->leFlag;
+    }
+
+    public function setLeFlag(?flag $leFlag): self
+    {
+        $this->leFlag = $leFlag;
+
+        return $this;
+    }
+>>>>>>> Stashed changes
 }

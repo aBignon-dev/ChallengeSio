@@ -22,27 +22,27 @@ class Equipe
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Nom;
-
-    /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="lequipe")
-     */
-    private $lesuser;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lesreponses")
-     */
-    private $lequipe;
+    private $nom;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $equipecomplete;
+    private $equipeComplete;
+
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="lequipe")
+     */
+    private $lesUsers;
+
+    /**
+     * @ORM\OneToMany(targetEntity=reponse::class, mappedBy="lequipe")
+     */
+    private $lesReponses;
 
     public function __construct()
     {
-        $this->lesuser = new ArrayCollection();
-        $this->lequipe = new ArrayCollection();
+        $this->lesUsers = new ArrayCollection();
+        $this->lesReponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,12 +52,24 @@ class Equipe
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(string $nom): self
     {
-        $this->Nom = $Nom;
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getEquipeComplete(): ?bool
+    {
+        return $this->equipeComplete;
+    }
+
+    public function setEquipeComplete(bool $equipeComplete): self
+    {
+        $this->equipeComplete = $equipeComplete;
 
         return $this;
     }
@@ -65,27 +77,27 @@ class Equipe
     /**
      * @return Collection|User[]
      */
-    public function getLesuser(): Collection
+    public function getLesUsers(): Collection
     {
-        return $this->lesuser;
+        return $this->lesUsers;
     }
 
-    public function addLesuser(User $lesuser): self
+    public function addLesUser(User $lesUser): self
     {
-        if (!$this->lesuser->contains($lesuser)) {
-            $this->lesuser[] = $lesuser;
-            $lesuser->setLequipe($this);
+        if (!$this->lesUsers->contains($lesUser)) {
+            $this->lesUsers[] = $lesUser;
+            $lesUser->setLequipe($this);
         }
 
         return $this;
     }
 
-    public function removeLesuser(User $lesuser): self
+    public function removeLesUser(User $lesUser): self
     {
-        if ($this->lesuser->removeElement($lesuser)) {
+        if ($this->lesUsers->removeElement($lesUser)) {
             // set the owning side to null (unless already changed)
-            if ($lesuser->getLequipe() === $this) {
-                $lesuser->setLequipe(null);
+            if ($lesUser->getLequipe() === $this) {
+                $lesUser->setLequipe(null);
             }
         }
 
@@ -93,43 +105,31 @@ class Equipe
     }
 
     /**
-     * @return Collection|Reponse[]
+     * @return Collection|reponse[]
      */
-    public function getLequipe(): Collection
+    public function getLesReponses(): Collection
     {
-        return $this->lequipe;
+        return $this->lesReponses;
     }
 
-    public function addLequipe(Reponse $lequipe): self
+    public function addLesReponse(reponse $lesReponse): self
     {
-        if (!$this->lequipe->contains($lequipe)) {
-            $this->lequipe[] = $lequipe;
-            $lequipe->setLesreponses($this);
+        if (!$this->lesReponses->contains($lesReponse)) {
+            $this->lesReponses[] = $lesReponse;
+            $lesReponse->setLequipe($this);
         }
 
         return $this;
     }
 
-    public function removeLequipe(Reponse $lequipe): self
+    public function removeLesReponse(reponse $lesReponse): self
     {
-        if ($this->lequipe->removeElement($lequipe)) {
+        if ($this->lesReponses->removeElement($lesReponse)) {
             // set the owning side to null (unless already changed)
-            if ($lequipe->getLesreponses() === $this) {
-                $lequipe->setLesreponses(null);
+            if ($lesReponse->getLequipe() === $this) {
+                $lesReponse->setLequipe(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getEquipecomplete(): ?bool
-    {
-        return $this->equipecomplete;
-    }
-
-    public function setEquipecomplete(bool $equipecomplete): self
-    {
-        $this->equipecomplete = $equipecomplete;
 
         return $this;
     }
