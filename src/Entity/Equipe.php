@@ -35,14 +35,14 @@ class Equipe
     private $lesUsers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lequipe")
+     * @ORM\OneToMany(targetEntity=reponse::class, mappedBy="lequipe")
      */
-    private $laReponse;
+    private $lesReponses;
 
     public function __construct()
     {
         $this->lesUsers = new ArrayCollection();
-        $this->laReponse = new ArrayCollection();
+        $this->lesReponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,27 +107,27 @@ class Equipe
     /**
      * @return Collection|reponse[]
      */
-    public function getLaReponse(): Collection
+    public function getLesReponses(): Collection
     {
-        return $this->laReponse;
+        return $this->lesReponses;
     }
 
-    public function addLaReponse(reponse $laReponse): self
+    public function addLesReponse(reponse $lesReponse): self
     {
-        if (!$this->laReponse->contains($laReponse)) {
-            $this->laReponse[] = $laReponse;
-            $laReponse->setLequipe($this);
+        if (!$this->lesReponses->contains($lesReponse)) {
+            $this->lesReponses[] = $lesReponse;
+            $lesReponse->setLequipe($this);
         }
 
         return $this;
     }
 
-    public function removeLaReponse(reponse $laReponse): self
+    public function removeLesReponse(reponse $lesReponse): self
     {
-        if ($this->laReponse->removeElement($laReponse)) {
+        if ($this->lesReponses->removeElement($lesReponse)) {
             // set the owning side to null (unless already changed)
-            if ($laReponse->getLequipe() === $this) {
-                $laReponse->setLequipe(null);
+            if ($lesReponse->getLequipe() === $this) {
+                $lesReponse->setLequipe(null);
             }
         }
 
