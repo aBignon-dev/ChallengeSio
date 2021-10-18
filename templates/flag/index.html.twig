@@ -9,8 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! </h1>
+    <h1>Hello ratatouille! </h1>
+            {{form(monFormulaire)}}
+    
+    
+    <button onclick="{{path ('home_route')}}">Page Indice</button>
+    <p><a href="{{path ('home_route')}}">Page Indice</a></p>
 
-    <button>Indice</button>
+    
 </div>
 {% endblock %}
