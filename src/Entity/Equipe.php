@@ -29,9 +29,20 @@ class Equipe
      */
     private $lesuser;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lesreponses")
+     */
+    private $lequipe;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $equipecomplete;
+
     public function __construct()
     {
         $this->lesuser = new ArrayCollection();
+        $this->lequipe = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +88,48 @@ class Equipe
                 $lesuser->setLequipe(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getLequipe(): Collection
+    {
+        return $this->lequipe;
+    }
+
+    public function addLequipe(Reponse $lequipe): self
+    {
+        if (!$this->lequipe->contains($lequipe)) {
+            $this->lequipe[] = $lequipe;
+            $lequipe->setLesreponses($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLequipe(Reponse $lequipe): self
+    {
+        if ($this->lequipe->removeElement($lequipe)) {
+            // set the owning side to null (unless already changed)
+            if ($lequipe->getLesreponses() === $this) {
+                $lequipe->setLesreponses(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEquipecomplete(): ?bool
+    {
+        return $this->equipecomplete;
+    }
+
+    public function setEquipecomplete(bool $equipecomplete): self
+    {
+        $this->equipecomplete = $equipecomplete;
 
         return $this;
     }

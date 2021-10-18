@@ -32,6 +32,16 @@ class Reponse
      */
     private $Reussie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lequipe")
+     */
+    private $lasreponse;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="leflag")
+     */
+    private $lesreponse;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Reponse
     public function setReussie(bool $Reussie): self
     {
         $this->Reussie = $Reussie;
+
+        return $this;
+    }
+
+    public function getLareponse(): ?Equipe
+    {
+        return $this->lareponse;
+    }
+
+    public function setLareponse(?Equipe $lareponse): self
+    {
+        $this->lareponse = $lareponse;
+
+        return $this;
+    }
+
+    public function getLesreponse(): ?flag
+    {
+        return $this->lesreponse;
+    }
+
+    public function setLesreponse(?flag $lesreponse): self
+    {
+        $this->lesreponse = $lesreponse;
 
         return $this;
     }
