@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FlagController extends AbstractController
@@ -44,7 +45,7 @@ class FlagController extends AbstractController
         // creates a task object and initializes some data for this example
 
         $form = $this->createFormBuilder()
-            ->add('textRep', TextType::class, ['label' => 'Réponse du flag'])
+            ->add('textRep', TextType::class, ['label' => 'Réponse au flag:'])
             ->add('valider', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
 
