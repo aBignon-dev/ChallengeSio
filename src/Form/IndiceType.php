@@ -16,13 +16,14 @@ class IndiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $data = $options['data'];
         $builder
             ->add('Equipe', ChoiceType::class, [
-                'choices' => $options[0],
+                'choices' => $data['equipes'],
                 'choice_label' => 'Nom',
             ])
             ->add('Flag', ChoiceType::class, [
-                'choices' => $options[1],
+                'choices' => $data['flags'],
                 'choice_label' => 'id',
             ])
 
