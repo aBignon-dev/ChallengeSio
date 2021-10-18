@@ -10,14 +10,12 @@ class EquipeFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i=0; $i < 5; $i++) { 
-            $product = new Equipe();
-            $product->setEquipecomplete(false);
-            $product->setNom("equipe ".$i);
-            //$product->addLesuser();
-            $manager->persist($product);
-        }
+        // for ($i=0; $i < 5; $i++) { 
+        //     $equipe->setNom("equipe ".$i);
+        //     //$product->addLesuser();
+        //     $manager->persist($equipe);
+        // }
 
-        $manager->flush();
+        // $manager->flush();
     }
 }

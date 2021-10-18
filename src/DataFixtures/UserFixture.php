@@ -10,15 +10,12 @@ class UserFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i=0; $i < 5; $i++) { 
-            $user = new User();
-            $user->setNom('eleve '.$i);
-            $user->setEmail('eleve '.$i.'@gmail.com');
-            $user->setPassword('mdpeleve '.$i);
-            $user->setRoles(false);
-            //$user->setLequipe();
-            $manager->persist($user);
-        }
+        $eleves = file_get_contents('./eleves.txt');
+       foreach(preg_split("/((\r?\n)|(\r\n?))/", $eleves) as $line){
+            $tl = explode(',',$line);
+            $eleve = new User($tl[0],$tl[1],$tl[2],$tl[3],$tl[4]);
+            $manager->persist($eleve);
+       }
 
         $manager->flush();
     }

@@ -22,10 +22,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private $identifiant;
 
     /**
-     * @ORM\Column(type="bool")
+     * @ORM\Column(type="boolean")
      */
     private $roles;
 
@@ -50,21 +50,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $lequipe;
 
-    
+    public function __construct(string $nom, string $prenom, string $identifiant, string $password, bool $role) {
+        $this->setNom($nom);
+        $this->setPrenom($prenom);
+        $this->setIdentifiant($identifiant);
+        $this->setPassword($password);
+        $this->setRoles($role);
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getIdentifiant(): ?string
     {
-        return $this->email;
+        return $this->identifiant;
     }
 
-    public function setEmail(string $email): self
+    public function setIdentifiant(string $identifiant): self
     {
-        $this->email = $email;
+        $this->identifiant = $identifiant;
 
         return $this;
     }
@@ -76,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->identifiant;
     }
 
     /**
@@ -84,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->identifiant;
     }
 
     /**

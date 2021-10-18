@@ -25,11 +25,6 @@ class Equipe
     private $nom;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $equipeComplete;
-
-    /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="lequipe")
      */
     private $lesUsers;
@@ -39,8 +34,9 @@ class Equipe
      */
     private $lesReponses;
 
-    public function __construct()
+    public function __construct(string $nom)
     {
+        $this->setNom($nom);
         $this->lesUsers = new ArrayCollection();
         $this->lesReponses = new ArrayCollection();
     }
@@ -58,18 +54,6 @@ class Equipe
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getEquipeComplete(): ?bool
-    {
-        return $this->equipeComplete;
-    }
-
-    public function setEquipeComplete(bool $equipeComplete): self
-    {
-        $this->equipeComplete = $equipeComplete;
 
         return $this;
     }

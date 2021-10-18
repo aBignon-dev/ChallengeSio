@@ -45,10 +45,6 @@ class Reponse
     /**
      * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lesReponses")
      */
-<<<<<<< Updated upstream
-    private $lesreponse;
-    
-=======
     private $lequipe;
 
     /**
@@ -56,7 +52,6 @@ class Reponse
      */
     private $leFlag;
 
->>>>>>> Stashed changes
     public function getId(): ?int
     {
         return $this->id;
@@ -133,8 +128,6 @@ class Reponse
 
         return $this;
     }
-<<<<<<< Updated upstream
-=======
 
     public function getLeFlag(): ?flag
     {
@@ -147,5 +140,4 @@ class Reponse
 
         return $this;
     }
->>>>>>> Stashed changes
 }

@@ -1,0 +1,58 @@
+Balabaud,Théo,btheo,btheo,false
+Le Gal,Gwendal,lgwendal,lgwendal,false
+Abiven,Tristan,atristan,atristan,false
+Nevot,Eymeric,neymeric,neymeric,false
+Robin,Océane,roceane,roceane,false
+Besnard,François,bfrancois,bfrancois,false
+Legruel,Jules,ljules,ljules,false
+Le Querriou,Benoit,lbenoit,lbenoit,false
+Lucas Herve,Romain,lromain,lromain,false
+Tacon,Romain,tromain,tromain,false
+Thomas,Axel,taxel,taxel,false
+Troadec,Hugo,thugo,thugo,false
+Phrasavath,Evan,pevan,pevan,false
+Bertucat,Bastien,bbastien,bbastien,false
+Bignon,Anthony,banthony,banthony,false
+Lecareux,Théo,ltheo,ltheo,false
+Warwick,Ewan,wewan,wewan,false
+Pincon,Anatole,panatole,panatole,false
+Becam,Mathis,bmathis,bmathis,false
+Chassan,Armand,carmand,carmand,false
+Lauhirat-Bidot,Nakorn,lnakorn,lnakorn,false
+Benasse,Matis,bmatis,bmatis,false
+Moreau,Valentin,mvalentin,mvalentin,false
+Peyrard,Tommmy,ptomy,ptomy,false
+Tazarart,Thereza,tthereza,tthereza,false
+Calvez,Tanguy,ctanguy,ctanguy,false
+Blanchet,Florien,bflorian,bflorian,false
+Rolland,Nicolas,rnicolas,rnicolas,false
+Le Bechec,Thomas,lthomas,lthomas,false
+Villalard,Kelig le GOAT,vkelig,vkelig,false
+Thivend,Jules,tjules,tjules,false
+Decroix,Jules-Yann,djules-yann,djules-yann,false
+Le Grand,Evan,levan,levan,false
+Marand,Nolwenn,mnolwenn,mnolwenn,false
+Cabioch,Enzouze,cenzo,cenzo,false
+Le Cun,Marine,lmarine,lmarine,false
+Rousseau,Erwan,rerwan,rerwan,false
+Blavignac,Yann,byann,byann,false
+L'Her,Emilie,lemilie,lemilie,false
+Lemarchand,Alan,lalan,lalan,false
+Saillour,Samuel,ssamuel,ssamuel,false
+Domalain,Alexandre,dalexandre,dalexandre,false
+Le Loarer,Ewen,lewen,lewen,false
+Toinen,Benoit,tbenoit,tbenoit,false
+Guibout,Lucien,glucien,glucien,false
+Saillard,Quentin,squentin,squentin,false
+Simon,Emilie,semilie,semilie,false
+Darghi Couffin,Wassil,dwassil,dwassil,false
+Cadran,Donovan,cdonovan,cdonovan,false
+Le Coz,Rose,lrose,lrose,false
+Laot,Killian,lkillian,lkillian,false
+Thomas,Jean-Andre,tjean-andre,tjean-andre,false
+Guilchou,Mael,gmael,gmael,false
+Guenguen,Mateo,gmateo,gmateo,false
+Le Corre,Raphael,lraphael,lraphael,false
+Leheron Aubin,Lea,llea,llea,false
+Desablens,Maeva,dmaeva,dmaeva,false
+Charuel,Gaspar,cgaspard,cgaspard,false
