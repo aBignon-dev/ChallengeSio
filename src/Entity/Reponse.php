@@ -23,7 +23,7 @@ class Reponse
     private $NbTentative;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     private $HeureReponse;
 
@@ -41,11 +41,6 @@ class Reponse
      * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="leflag")
      */
     private $lesreponse;
-
-    /**
-     * @ORM\Column(type="time")
-     */
-    private $heureDebut;
     
     public function getId(): ?int
     {
@@ -108,18 +103,6 @@ class Reponse
     public function setLesreponse(?flag $lesreponse): self
     {
         $this->lesreponse = $lesreponse;
-
-        return $this;
-    }
-
-    public function getHeureDebut(): ?\DateTimeInterface
-    {
-        return $this->heureDebut;
-    }
-
-    public function setHeureDebut(\DateTimeInterface $heureDebut): self
-    {
-        $this->heureDebut = $heureDebut;
 
         return $this;
     }
