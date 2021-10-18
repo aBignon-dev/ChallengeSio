@@ -48,7 +48,7 @@ class Reponse
     private $lequipe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="lesReponses")
+     * @ORM\ManyToOne(targetEntity=Flag::class, inversedBy="lesReponses")
      */
     private $leFlag;
 

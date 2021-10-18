@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="bool")
+     * @ORM\Column(type="boolean")
      */
     private $roles;
 
@@ -49,8 +49,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToOne(targetEntity=equipe::class, inversedBy="lesuser")
      */
     private $lequipe;
-
-    
 
     public function getId(): ?int
     {

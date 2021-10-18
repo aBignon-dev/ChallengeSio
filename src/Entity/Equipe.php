@@ -35,7 +35,7 @@ class Equipe
     private $lesUsers;
 
     /**
-     * @ORM\OneToMany(targetEntity=reponse::class, mappedBy="lequipe")
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lequipe")
      */
     private $laReponse;
 
