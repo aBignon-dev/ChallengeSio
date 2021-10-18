@@ -16,6 +16,7 @@ class UserFixture extends Fixture
             $user->setEmail('eleve '.$i.'@gmail.com');
             $user->setPassword('mdpeleve '.$i);
             $user->setRoles(false);
+            //$user->setLequipe();
             $manager->persist($user);
         }
 
