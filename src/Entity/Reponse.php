@@ -43,15 +43,20 @@ class Reponse
     private $nbIndices;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="laReponse")
+     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lesReponses")
      */
+<<<<<<< Updated upstream
+    private $lesreponse;
+    
+=======
     private $lequipe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Flag::class, inversedBy="lesReponses")
+     * @ORM\ManyToOne(targetEntity=flag::class, inversedBy="lesReponces")
      */
     private $leFlag;
 
+>>>>>>> Stashed changes
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +133,8 @@ class Reponse
 
         return $this;
     }
+<<<<<<< Updated upstream
+=======
 
     public function getLeFlag(): ?flag
     {
@@ -140,4 +147,5 @@ class Reponse
 
         return $this;
     }
+>>>>>>> Stashed changes
 }
