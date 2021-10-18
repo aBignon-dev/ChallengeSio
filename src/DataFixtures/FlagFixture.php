@@ -6,7 +6,7 @@ use App\Entity\Flag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class FlagFixtures extends Fixture
+class FlagFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -16,6 +16,7 @@ class FlagFixtures extends Fixture
             $flag->setPoints(10);
             $flag->setTextReponse('reponse '.$i);
             $flag->setTitreQuestion('question '.$i);
+            $flag->setNID($i);
             $manager->persist($flag);
         }
 

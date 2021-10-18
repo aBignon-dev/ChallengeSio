@@ -76,7 +76,7 @@ class Flag
         return $this->TetQuote;
     }
 
-    public function setTextQuote(string $TetQuote): self
+    public function setTextQuote(string $textQuote): self
     {
         $this->textQuote = $textQuote;
 
@@ -147,5 +147,10 @@ class Flag
         $this->nID = $nID;
 
         return $this;
+    }
+
+    public function getTextQuote(): ?string
+    {
+        return $this->textQuote;
     }
 }
