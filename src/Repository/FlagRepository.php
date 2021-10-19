@@ -19,6 +19,24 @@ class FlagRepository extends ServiceEntityRepository
         parent::__construct($registry, Flag::class);
     }
 
+    /**
+     * @return Flag[]
+     */
+    public function findAllFlagString(string $textQuote): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            WHERE p.price > :price
+            ORDER BY p.price ASC'
+        )->setParameter('textQuote', $textQuote);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Flag[] Returns an array of Flag objects
     //  */
