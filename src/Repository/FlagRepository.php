@@ -32,8 +32,8 @@ class FlagRepository extends ServiceEntityRepository
     // /**
     //  * @return Flag[] Returns an array of Flag objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+   /* public function findByExampleField($value)
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')
@@ -43,8 +43,19 @@ class FlagRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }*/
+
+    public function findAllFlag($value)
+    {
+        return $this->createQueryBuilder('findAllFlag')
+            ->setParameter('val', $value)
+            ->orderBy('f.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ->findBy();
+        ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Flag

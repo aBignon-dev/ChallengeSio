@@ -6,6 +6,8 @@ use App\Repository\FlagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=FlagRepository::class)
@@ -22,12 +24,20 @@ class Flag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titreQuestion;
+    private $titreQuestion; 
+    public static function loadValidatorMetadataTitreQuestion(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('titreQuestion', new NotBlank());
+    }
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $textQuote;
+    public static function loadValidatorMetadataTextQuote(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('textQuote', new NotBlank());
+    }
 
     /**
      * @ORM\Column(type="integer")
@@ -38,7 +48,11 @@ class Flag
      * @ORM\Column(type="string", length=255)
      */
     private $textReponse;
-
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('textReponse', new NotBlank());
+    }
 
 
     /**
