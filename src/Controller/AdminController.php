@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\entity\User;
-use App\entity\Equipe;
-use App_entity\Flag;
+use App\Entity\User;
+use App\Entity\Equipe;
+use App\Entity\Flag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,8 +16,14 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $equipes = $em->getRepository(Equipe::class)->findAll();
+        $flags = $em->getRepository(Flag::class)->findAll();
+
+        return $this->render('admin/index.html.twig',
+        array('equipe' => $equipes ,
+        'flag' => $flags ,
+        ));
     }
+   
 }
