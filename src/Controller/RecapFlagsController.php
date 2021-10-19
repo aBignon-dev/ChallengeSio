@@ -17,9 +17,11 @@ class RecapFlagsController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $flags = $entityManager->getRepository(Flag::class)->findAll();
-        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['lequipe_id'=>$_SESSION['id_equipe']]);
+        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['lequipe_id'=>1]);
         $titles = [];
         $temps = [];
+        $nb_equipes = [];
+        $reponses_flag = [];
 
         foreach ($flags as $flag) {
             array_push($titles,$flag->getTitreQuestion());
@@ -27,11 +29,21 @@ class RecapFlagsController extends AbstractController
         foreach($reponses as $reponse){
             array_push($temps,$reponse->getHeureFin() - $reponse->getHeureDebut());
         }
+        foreach($entityManager->getRepository(Reponse::class)->findAll() as $reponse){
+            if($reponse->getReussie()) $nb_equipes[$reponse->getLeFlag()->getId()] +=1;
+        }
+        foreach($reponses as $reponse){
+            $reponses_flag[$reponse->getLeFlag()->getId()] = $reponse->getReussie();
+        }
 
+        $resultat = json_encode($titles);
+        var_dump($resultat);
         return $this->render('recap_flags/index.html.twig', [
             'controller_name' => 'RecapFlagsController',
             'titles' => $titles,
             'temps' => $temps,
+            'nb_equipes' => $nb_equipes,
+
         ]);
     }
 }
