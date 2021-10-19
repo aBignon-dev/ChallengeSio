@@ -17,7 +17,7 @@ class RecapFlagsController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $flags = $entityManager->getRepository(Flag::class)->findAll();
-        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['lequipe_id'=>1]);
+        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['nb_tentatives'=>0]);
         $titles = [];
         $temps = [];
         $nb_equipes = [];
