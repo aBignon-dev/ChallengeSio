@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Form\CreationFlagType;
 
 class FlagController extends AbstractController
 {
@@ -81,9 +82,6 @@ class FlagController extends AbstractController
         ]);
     }
     
-  
-
-
     public function flag(ValidatorInterface $validator)
     {
         $author = new Flag();
@@ -112,5 +110,38 @@ class FlagController extends AbstractController
         $repo->findAllFlag($id);
         
         return $this->render('flag/index.html.twig');
+    }
+
+/**
+     * @Route("/flag/2", name="flagnouveau")
+     * @Route("/flag/{id}/edit", name="flagmaj")
+     */
+    public function GestionClient(Flag $flag = null,
+    Request $request, 
+    EntityManagerInterface $manager)
+    {
+        
+        if(!$flag)
+        {$flag = new Flag();}
+        
+ 
+        $form = $this->createForm(CreationFlagType::class,$flag);
+ 
+        $form->handleRequest($request);
+ 
+        if(($form->isSubmitted() && $form->isValid()))
+        {
+            
+            $manager->persist($flag);
+            
+            $manager->flush();
+ 
+            return $this->redirectToRoute('retour');
+        }
+ 
+        return $this->render('creation_flag/creationFlag.html.twig', [
+            'form' => $form->createView(),
+            'editmode' => $flag->getId() !== null
+        ]);
     }
 }
