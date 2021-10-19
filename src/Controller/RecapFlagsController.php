@@ -17,10 +17,10 @@ class RecapFlagsController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $flags = $entityManager->getRepository(Flag::class)->findAll();
-        $reponses = $entityManager->getRepository(Reponse::class)->findAll();
+        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['lequipe_id'=>$_SESSION['id_equipe']]);
         $titles = [];
         $temps = [];
-        
+
         foreach ($flags as $flag) {
             array_push($titles,$flag->getTitreQuestion());
         }

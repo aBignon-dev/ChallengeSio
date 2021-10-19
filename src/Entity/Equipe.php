@@ -34,9 +34,8 @@ class Equipe
      */
     private $lesReponses;
 
-    public function __construct(string $nom)
+    public function __construct()
     {
-        $this->setNom($nom);
         $this->lesUsers = new ArrayCollection();
         $this->lesReponses = new ArrayCollection();
     }
