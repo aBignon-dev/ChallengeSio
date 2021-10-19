@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Reponse|null findOneBy(array $criteria, array $orderBy = null)
  * @method Reponse[]    findAll()
  * @method Reponse[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reponse[]    findEquipeReponses(int $equipe)
  */
 class ReponseRepository extends ServiceEntityRepository
 {
@@ -19,16 +20,19 @@ class ReponseRepository extends ServiceEntityRepository
         parent::__construct($registry, Reponse::class);
     }
 
+    /**
+     * @Return Reponse[] Returns an array of reponse
+     */
     public function findEquipeReponses($equipe){
-        $qb = $this->createQueryBuilder('*')
-            ->from('Reponse','*')
-            ->where('Reponse.lequipe_id=:equipe')
-            ->setParameter('equipe',$equipe->getId())
+        $qb = $this->createQueryBuilder('r')
+            ->andwhere('r.lequipe_id=:equipe')
+            ->setParameter('equipe',$equipe)
             ->getQuery();
 
         return $qb->execute();
     }
 
+    
     // /**
     //  * @return Reponse[] Returns an array of Reponse objects
     //  */

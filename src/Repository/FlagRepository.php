@@ -18,6 +18,16 @@ class FlagRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Flag::class);
     }
+    /**
+     * @Return Titres[]
+     */
+    public function TitresFlags(){
+        $qb = $this->createQueryBuilder('f')
+            ->select('f.titre_question')
+            ->getQuery();
+
+        return $qb->execute();            
+    }
 
     // /**
     //  * @return Flag[] Returns an array of Flag objects
