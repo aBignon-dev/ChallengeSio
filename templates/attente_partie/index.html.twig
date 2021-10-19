@@ -1,20 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AttentePartieController!{% endblock %}
+{% block title %}Hello AttentePartieController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<script>
+		function startTimer(duration, display) {
+var timer = duration,
+minutes,
+seconds;
+setInterval(function () {
+minutes = parseInt(timer / 60, 10);
+seconds = parseInt(timer % 60, 10);
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+minutes = minutes < 10 ? "0" + minutes : minutes;
+seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/SudokuLearning/ChallengeSio/src/Controller/AttentePartieController.php'|file_link(0) }}">src/Controller/AttentePartieController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/SudokuLearning/ChallengeSio/templates/attente_partie/index.html.twig'|file_link(0) }}">templates/attente_partie/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+display.textContent = minutes + ":" + seconds;
+
+if (-- timer < 0) {
+document.location.href = "http://localhost:8000/flagFormulaire";
+}
+}, 1000);
+}
+
+window.onload = function () {
+var fiveMinutes = 60 * 1,
+display = document.querySelector('#time');
+startTimer(fiveMinutes, display);
+};
+	</script>
+
+	<div class="lime-container">
+		<div class="lime-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Liste des membres de votre équipe</h5>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Eleve n°</th>
+											<th scope="col">Nom</th>
+
+										</tr>
+									</thead>
+									<tbody><!--{% if %}-->
+										<!-- {% endif %}-->
+										<!--    <?php       
+										                             // Boucle for permettant d'afficher l'emsemble élèves réferent
+										                                        foreach( $ListeEleveDansEquipe as $row ) {
+										                                           
+										                                            echo '
+										                                                <tr>
+										                                                    <td>n°'. $row['ID_USER'] .'</td>
+										                                                    <td>'. $row['nomUser'] .'</td>
+										                                                ';} ?>-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="lime-container">
+		<div class="lime-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Veuillez patienter</h5>
+								<span id="time">01:00</span>
+								<!-- 
+								                            <?php
+								                            if ($GoBoutonEnclencher['Gostart'] == 1) {
+								
+								                            echo 'Début de la partie dans  <div>La partie commence dans :<span id="time">05:00</span> minutes!</div>';}
+								                            else{
+								                            <meta http-equiv="refresh" content="10">
+								                            echo 'Veuillez attendre le lancement de la partie par les proffesseurs.';
+								                            }?>
+								                            -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
