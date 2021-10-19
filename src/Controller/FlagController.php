@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Flag;
+use App\Repository\FlagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FlagController extends AbstractController
 {
@@ -53,7 +55,8 @@ class FlagController extends AbstractController
         // creates a task object and initializes some data for this example
 
         $form = $this->createFormBuilder()
-            ->add('textRep', TextType::class, ['label' => 'Réponse au flag:'])
+            ->add('textQuote', TextType::class, ['label' => 'Question du flag:'])
+            ->add('textReponse', TextType::class, ['label' => 'Réponse au flag:'])
             ->add('valider', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
 
@@ -76,5 +79,38 @@ class FlagController extends AbstractController
         return $this->render('flag/index.html.twig', [
             'monFormulaire' => $form->createView()
         ]);
+    }
+    
+  
+
+
+    public function flag(ValidatorInterface $validator)
+    {
+        $author = new Flag();
+
+        // ... do something to the $author object
+
+        $errors = $validator->validate($author);
+
+        if (count($errors) > 0) {
+            /*
+            * Uses a __toString method on the $errors variable which is a
+            * ConstraintViolationList object. This gives us a nice string
+            * for debugging.
+            */
+            $errorsString = (string) $errors;
+
+            return new Response($errorsString);
+        }
+
+        return new Response('The author is valid! Yes!');
+    }
+    
+    public function findAllFlag(): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Flag::class);//test avec flag 
+        $repo->findAllFlag($id);
+        
+        return $this->render('flag/index.html.twig');
     }
 }
