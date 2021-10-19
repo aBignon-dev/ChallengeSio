@@ -39,19 +39,21 @@ class Flag
      */
     private $textReponse;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="leFlag")
-     */
-    private $lesReponces;
+
 
     /**
      * @ORM\Column(type="integer")
      */
     private $nID;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="leflag")
+     */
+    private $lesreponses;
+
     public function __construct()
     {
-        $this->lesReponces = new ArrayCollection();
+        $this->lesreponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,9 +73,9 @@ class Flag
         return $this;
     }
 
-    public function getTetQuote(): ?string
+    public function getTextQuote(): ?string
     {
-        return $this->TetQuote;
+        return $this->textQuote;
     }
 
     public function setTextQuote(string $textQuote): self
@@ -107,36 +109,7 @@ class Flag
         return $this;
     }
 
-    /**
-     * @return Collection|Reponse[]
-     */
-    public function getLesReponces(): Collection
-    {
-        return $this->lesReponces;
-    }
-
-    public function addLesReponce(Reponse $lesReponce): self
-    {
-        if (!$this->lesReponces->contains($lesReponce)) {
-            $this->lesReponces[] = $lesReponce;
-            $lesReponce->setLeFlag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLesReponce(Reponse $lesReponce): self
-    {
-        if ($this->lesReponces->removeElement($lesReponce)) {
-            // set the owning side to null (unless already changed)
-            if ($lesReponce->getLeFlag() === $this) {
-                $lesReponce->setLeFlag(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     public function getNID(): ?int
     {
         return $this->nID;
@@ -149,8 +122,33 @@ class Flag
         return $this;
     }
 
-    public function getTextQuote(): ?string
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getLesreponses(): Collection
     {
-        return $this->textQuote;
+        return $this->lesreponses;
+    }
+
+    public function addLesreponse(Reponse $lesreponse): self
+    {
+        if (!$this->lesreponses->contains($lesreponse)) {
+            $this->lesreponses[] = $lesreponse;
+            $lesreponse->setLeflag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesreponse(Reponse $lesreponse): self
+    {
+        if ($this->lesreponses->removeElement($lesreponse)) {
+            // set the owning side to null (unless already changed)
+            if ($lesreponse->getLeflag() === $this) {
+                $lesreponse->setLeflag(null);
+            }
+        }
+
+        return $this;
     }
 }

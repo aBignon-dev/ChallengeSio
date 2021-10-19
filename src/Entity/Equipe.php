@@ -30,14 +30,17 @@ class Equipe
     private $lesUsers;
 
     /**
-     * @ORM\OneToMany(targetEntity=reponse::class, mappedBy="lequipe")
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lequipe")
      */
-    private $lesReponses;
+    private $lesreponses;
+
+  
 
     public function __construct()
     {
+        
         $this->lesUsers = new ArrayCollection();
-        $this->lesReponses = new ArrayCollection();
+        $this->lesreponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,32 +91,34 @@ class Equipe
     }
 
     /**
-     * @return Collection|reponse[]
+     * @return Collection|Reponse[]
      */
-    public function getLesReponses(): Collection
+    public function getLesreponses(): Collection
     {
-        return $this->lesReponses;
+        return $this->lesreponses;
     }
 
-    public function addLesReponse(reponse $lesReponse): self
+    public function addLesreponse(Reponse $lesreponse): self
     {
-        if (!$this->lesReponses->contains($lesReponse)) {
-            $this->lesReponses[] = $lesReponse;
-            $lesReponse->setLequipe($this);
+        if (!$this->lesreponses->contains($lesreponse)) {
+            $this->lesreponses[] = $lesreponse;
+            $lesreponse->setLequipe($this);
         }
 
         return $this;
     }
 
-    public function removeLesReponse(reponse $lesReponse): self
+    public function removeLesreponse(Reponse $lesreponse): self
     {
-        if ($this->lesReponses->removeElement($lesReponse)) {
+        if ($this->lesreponses->removeElement($lesreponse)) {
             // set the owning side to null (unless already changed)
-            if ($lesReponse->getLequipe() === $this) {
-                $lesReponse->setLequipe(null);
+            if ($lesreponse->getLequipe() === $this) {
+                $lesreponse->setLequipe(null);
             }
         }
 
         return $this;
     }
+
+    
 }

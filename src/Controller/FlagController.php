@@ -24,6 +24,14 @@ class FlagController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/flag/test", name="flag")
+     */
+    public function test(): Response
+    {
+        return $this->render('flag/index.html.twig');
+    }
+
     public function redirection(): RedirectResponse
     {
         // redirects to the "homepage" route
