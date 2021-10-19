@@ -22,8 +22,9 @@ class AdminController extends AbstractController
 
         return $this->render('admin/index.html.twig',
         array('equipe' => $equipes ,
-        'flag' => $flags ,
-        ));
+        'flag' => $flags ,[
+            'controller_name' => 'AdminController',
+        ]));
     }
    
 }
