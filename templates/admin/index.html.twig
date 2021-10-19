@@ -3,54 +3,82 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-	<h1>Liste Equipe</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nom Equipe</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-        {% for equipe in equipe %}            
-			<tr>
-				<td>{{equipe.nom}}</td>
-				<td class="text-center">
-                    <a  class="btn blue">Modifier</a>
-                    <a  class="btn red">Supprimer</a>
-                </td>
-			</tr>
-        {% endfor %}
-		</tbody>
-	</table>
-    <h1>Liste flags</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Titre</th>
-                <th>Question</th>
-                <th>Réponse</th>
-                <th>Points</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-        {% for flag in flag %}            
-			<tr>
-				<td>{{flag.nID}}</td>
-				<td>{{flag.titreQuestion}}</td>
-                <td>{{flag.textQuote}}</td>
-                <td>{{flag.textReponse}}</td>
-				<td>{{flag.points}}</td>
-				<td class="text-center">
-                    <a  class="btn blue">Modifier</a>
-                    <a  class="btn red">Supprimer</a>
-                </td>
-			</tr>
-        {% endfor %}
-		</tbody>
-	</table>
-	<bouton  class="btn blue">Ajouter un flag</bouton>
+	<div class="row">
+		<div class="col-md-12"> 
+			<div class="card">
+				<div class="card-body">
+					<h1 class="card-title">Liste equipe</h1>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nom Equipe</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for equipe in equipe %}            
+								<tr>
+									<td>{{equipe.nom}}</td>
+									<td class="text-center">
+										<button type="button" name="creer_entreprise" class="btn">
+											<a class="btn btn-block btn-primary btn-lg" >Modifier</a>
+										</button>
+										<button type="button" name="creer_entreprise" class="btn">
+											<a class="btn btn-block btn-primary btn-lg" >Supprimer</a>
+										</button>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	
+		</div>	
+		<div class="col-md-12"> 
+			<div class="card">
+				<div class="card-body">
+					<h1 class="card-title">Liste flags</h1>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Titre</th>
+									<th>Question</th>
+									<th>Réponse</th>
+									<th>Points</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for flag in flag %}            
+								<tr>
+									<td>{{flag.nID}}</td>
+									<td>{{flag.titreQuestion}}</td>
+									<td>{{flag.textQuote}}</td>
+									<td>{{flag.textReponse}}</td>
+									<td>{{flag.points}}</td>
+									<td class="text-center">
+										<button type="button" name="creer_entreprise" class="btn">
+											<a class="btn btn-block btn-primary btn-lg" >Modifier</a>
+										</button>
+										<button type="button" name="creer_entreprise" class="btn">
+											<a class="btn btn-block btn-primary btn-lg" >Supprimer</a>
+										</button>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+						<button type="button" name="creer_entreprise" class="btn">
+            			<a class="btn btn-block btn-primary btn-lg" >Créer un flag</a>
+           				</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 
