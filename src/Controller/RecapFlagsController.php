@@ -17,7 +17,7 @@ class RecapFlagsController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $flags = $entityManager->getRepository(Flag::class)->findAll();
-        $reponses = $entityManager->getRepository(Reponse::class)->findBy(['nb_tentatives'=>0]);
+        // $reponsesDeLequipe = $entityManager->getRepository(Reponse::class)->findEquipeReponses($equipe);
         $titles = [];
         $temps = [];
         $nb_equipes = [];
@@ -26,15 +26,12 @@ class RecapFlagsController extends AbstractController
         foreach ($flags as $flag) {
             array_push($titles,$flag->getTitreQuestion());
         }
-        foreach($reponses as $reponse){
-            array_push($temps,$reponse->getHeureFin() - $reponse->getHeureDebut());
-        }
-        foreach($entityManager->getRepository(Reponse::class)->findAll() as $reponse){
-            if($reponse->getReussie()) $nb_equipes[$reponse->getLeFlag()->getId()] +=1;
-        }
-        foreach($reponses as $reponse){
-            $reponses_flag[$reponse->getLeFlag()->getId()] = $reponse->getReussie();
-        }
+        // foreach($reponsesDeLequipe as $reponse){
+        //     array_push($temps,$reponse->getHeureFin() - $reponse->getHeureDebut());
+        // }
+        // foreach($reponsesDeLequipe as $reponse){
+        //     $reponses_flag[$reponse->getLeFlag()->getId()] = $reponse->getReussie();
+        // }
 
         $resultat = json_encode($titles);
         var_dump($resultat);
