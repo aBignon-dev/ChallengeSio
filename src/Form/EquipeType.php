@@ -2,30 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Flag;
+use App\Entity\Equipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
-class CreationFlagType extends AbstractType
+class EquipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titreQuestion')
-            ->add('textQuote')
-            ->add('points')
-            ->add('textReponse')
-            ->add('nID')
+            ->add('nom')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Flag::class,
+            'data_class' => Equipe::class,
         ]);
     }
 }
-?>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Flag;
 use App\Entity\Reponse;
+use App\Repository\ReponseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,16 +13,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecapFlagsController extends AbstractController
 {
     /**
-     * @Route("/recap/flags", name="recap_flags")
+     * @Route("/RecapFlags", name="RecapFlags")
      */
-    public function GetRecapReponse($id_equipe, EntityManagerInterface $m){
-        $flagsTitres = $m->getRepository(Flag::class);
-        $reponses = $m->getRepository(Reponse::class)->findEquipeReponses();
-        $reponsesEquipe = [];
-        foreach($reponses as $reponse){
-            if($reponse->getId == $id_equipe) array_push($reponsesEquipe,$reponse);
-        }
-
+    public function index(): Response
+    {
+        return $this->render('Recap_flags/index.html.twig', [
+            'controller_name' => 'RecapFlagsController',
+        ]);
+    }
+    /**
+     * @Route("/RecapFlags/{id}", name="recap_flags")
+     */
+    public function GetRecapReponse(Reponse $id, ReponseRepository $vehiculeRepository)
+    {
+        $vehicules = $vehiculeRepository->findEquipeReponses($id);
+     
+        return $this->render('Recap_flags/listereponses.html.twig',['lesvehicules' => $vehicules]);
     }
 
 

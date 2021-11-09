@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Form\CreationFlagType;
+use App\Form\FlagType;
 
 class FlagController extends AbstractController
 {
@@ -27,93 +27,9 @@ class FlagController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/flag/test", name="flag")
-     */
-    public function test(): Response
-    {
-        return $this->render('flag/index.html.twig');
-    }
-
-    public function redirection(): RedirectResponse
-    {
-        // redirects to the "homepage" route
-        return $this->redirectToRoute('homepage');
-
-        // redirectToRoute is a shortcut for:
-        // return new RedirectResponse($this->generateUrl('homepage'));
-
-        // redirects to a route and maintains the original query string parameters
-        //return $this->redirectToRoute('blog_show', $request->query->all());
-
-    }
-
-    /**
-     * @Route("/flagFormulaire", name="flag")
-     */
-    public function create(Request $request, EntityManagerInterface $em): Response
-    {
-        // creates a task object and initializes some data for this example
-
-        $form = $this->createFormBuilder()
-            ->add('textQuote', TextType::class, ['label' => 'Question du flag:'])
-            ->add('textReponse', TextType::class, ['label' => 'Réponse au flag:'])
-            ->add('valider', SubmitType::class, ['label' => 'Valider'])
-            ->getForm();
-
-
-            $form->handleRequest($request);
-            /** Récupère toutes les données du formulaire de la variable resquest instanciée plus haut */
-    
-            if ($form->isSubmitted() && $form-> isValid()){
-                /** Vérification si le formulaire à été cliqué sur soumis, si c'est le cas on vérifie si c'est valide (exemple contenir plusieurs caractères) */
-                $data = $form->getData();
-                
-                $pin = new Flag;
-
-           //     $pin->setReponse($data['textRep']);
-                $em->persist($pin);
-                $em->flush();
-    
-            //    return $this->redirectToRoute('home_route'); /** redirection route j'arrive pas à le faire fonctionner */
-            }
-        return $this->render('flag/index.html.twig', [
-            'monFormulaire' => $form->createView()
-        ]);
-    }
-    
-    public function flag(ValidatorInterface $validator)
-    {
-        $author = new Flag();
-
-        // ... do something to the $author object
-
-        $errors = $validator->validate($author);
-
-        if (count($errors) > 0) {
-            /*
-            * Uses a __toString method on the $errors variable which is a
-            * ConstraintViolationList object. This gives us a nice string
-            * for debugging.
-            */
-            $errorsString = (string) $errors;
-
-            return new Response($errorsString);
-        }
-
-        return new Response('The author is valid! Yes!');
-    }
-    
-    public function findAllFlag(): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Flag::class);//test avec flag 
-        $repo->findAllFlag($id);
-        
-        return $this->render('flag/index.html.twig');
-    }
 
 /**
-     * @Route("/flag/2", name="flagnouveau")
+     * @Route("/flag/nouveau", name="flagnouveau")
      * @Route("/flag/{id}/edit", name="flagmaj")
      */
     public function GestionClient(Flag $flag = null,
@@ -125,7 +41,7 @@ class FlagController extends AbstractController
         {$flag = new Flag();}
         
  
-        $form = $this->createForm(CreationFlagType::class,$flag);
+        $form = $this->createForm(FlagType::class,$flag);
  
         $form->handleRequest($request);
  
@@ -136,12 +52,20 @@ class FlagController extends AbstractController
             
             $manager->flush();
  
-            return $this->redirectToRoute('retour');
+            return $this->redirectToRoute('listedesflags');
         }
  
-        return $this->render('creation_flag/creationFlag.html.twig', [
+        return $this->render('flag/gestion_flag.html.twig', [
             'form' => $form->createView(),
             'editmode' => $flag->getId() !== null
         ]);
+    }
+      /**
+     * @Route("/equipe/listedesflags", name="listedesflags")
+     */
+    public function gestiondesequipes(FlagRepository $flagRepository)
+    {
+        $flags = $flagRepository->findAll();
+        return $this->render('flag/liste_flag.html.twig',['flags'=>$flags]);
     }
 }

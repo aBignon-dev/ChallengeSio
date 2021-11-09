@@ -22,7 +22,7 @@ class Flag
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $titreQuestion; 
     public static function loadValidatorMetadataTitreQuestion(ClassMetadata $metadata)
@@ -31,7 +31,7 @@ class Flag
     }
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $textQuote;
     public static function loadValidatorMetadataTextQuote(ClassMetadata $metadata)
@@ -45,7 +45,7 @@ class Flag
     private $points;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $textReponse;
     
@@ -64,6 +64,8 @@ class Flag
      * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="leflag")
      */
     private $lesreponses;
+
+    
 
     public function __construct()
     {
@@ -165,4 +167,6 @@ class Flag
 
         return $this;
     }
+
+    
 }

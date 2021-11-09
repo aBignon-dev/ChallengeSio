@@ -1,7 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
-
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+ <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="css/block.css">
+        <link href="css/style.css" rel="stylesheet">
+{% endblock %}
 {% block body %}
+
+        <section class="bg-secondary text-white">
+            <div class="container-xxl">
+                <div class="row" style="min-height: 71vh;">
+                    <div class="col-lg-5 d-flex flex-column justify-content-center pb-5 pe-4 pe-sm-5 ps-4 ps-sm-5 pt-5">
+                        <p class="h6 text-primary text-uppercase">Lycée Felix LE DANTEC</p>
+                        <h1 class="display-4 fw-bold mb-3">Challenge CYBER SIO 2022 - Journée d'integration</h1>
+                        <p class="lead mb-4">
+Je ne cherche pas à connaître les réponses, je cherche à comprendre les questions.                        <p><a href="#" class="btn btn-primary btn-lg px-4">Commencez</a></p>
+                    </div>
+                    <div class="col-lg flex-grow-1 order-first order-lg-last poster position-relative" style="min-height: 50vh;">
+</div>
+                </div>
+            </div>
+        </section>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <section class="bg-secondary pb-5 pt-5 text-center text-white">
+            <div class="container"> 
+                <div class="justify-content-center row"> 
+                    <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="3rem" height="3rem" class="mb-3 text-primary">
+                                <path d="M15.224 15.508l-2.213 4.65a.6.6 0 0 1-.977.155l-3.542-3.739a.6.6 0 0 0-.357-.182l-5.107-.668a.6.6 0 0 1-.449-.881l2.462-4.524a.6.6 0 0 0 .062-.396L4.16 4.86a.6.6 0 0 1 .7-.7l5.063.943a.6.6 0 0 0 .396-.062l4.524-2.462a.6.6 0 0 1 .881.45l.668 5.106a.6.6 0 0 0 .182.357l3.739 3.542a.6.6 0 0 1-.155.977l-4.65 2.213a.6.6 0 0 0-.284.284zm.797 1.927l1.414-1.414 4.243 4.242-1.415 1.415-4.242-4.243z"></path>
+                            </svg>
+                            <h2 class="fw-bold mb-1">36</h2>
+                            <p class="mb-0">Nombre d&apos;equipes</p>
+                        </div>                         
+                    </div>
+                    <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="3rem" height="3rem" class="mb-3 text-primary">
+                                <path d="M5 3h15a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V4a1 1 0 0 1 1-1zm13 2v3h2V5h-2zM2 19h18v2H2v-2z"></path>
+                            </svg>
+                            <h2 class="fw-bold mb-1">149</h2>
+                            <p class="mb-0">Nombre de Flags</p>
+                        </div>                         
+                    </div>
+                    <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="3rem" height="3rem" class="mb-3 text-primary">
+                                <path d="M7.941 18c-.297-1.273-1.637-2.314-2.187-3a8 8 0 1 1 12.49.002c-.55.685-1.888 1.726-2.185 2.998H7.94zM16 20v1a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1h8zm-3-9.995V6l-4.5 6.005H11v4l4.5-6H13z"></path>
+                            </svg>
+                            <h2 class="fw-bold mb-1">2496</h2>
+                            <p class="mb-0">Nombre de flags découverts</p>
+                        </div>                         
+                    </div>
+                    <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="3rem" height="3rem" class="mb-3 text-primary">
+                                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm1-10V7h-2v7h6v-2h-4z" stroke="var(--bs-primary)"></path>
+                            </svg>
+                            <h2 class="fw-bold mb-1">4695</h2>
+                            <p class="mb-0">Temps restant</p>
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </div>
+        </section>
 
 {% endblock %}

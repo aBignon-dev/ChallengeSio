@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -22,12 +24,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $identifiant;
+    private $username;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $roles;
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @var string The hashed password
@@ -35,45 +47,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Prenom;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lesuser")
-     */
-    private $lequipe;
-
-    public function __construct(string $nom, string $prenom, string $identifiant, string $password, bool $role) {
-        $this->setNom($nom);
-        $this->setPrenom($prenom);
-        $this->setIdentifiant($identifiant);
-        $this->setPassword($password);
-        $this->setRoles($role);
-    }
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdentifiant(): ?string
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        return $this->identifiant;
+        return (string) $this->username;
     }
 
-    public function setIdentifiant(string $identifiant): self
+    public function setUsername(string $username): self
     {
-        $this->identifiant = $identifiant;
+        $this->username = $username;
 
         return $this;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+         * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="lesusers")
+         */
+        private $lequipe;
+
+        /**
+         * @ORM\Column(type="boolean")
+         */
+        private $isVerified = false;
 
     /**
      * A visual identifier that represents this user.
@@ -82,26 +108,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->identifiant;
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->identifiant;
+        return (string) $this->username;
     }
 
     /**
      * @see UserInterface
      */
-    public function getRoles(): bool
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRoles(bool $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -143,39 +165,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->Nom;
-    }
+    public function getLequipe(): ?Equipe
+        {
+            return $this->lequipe;
+        }
 
-    public function setNom(string $Nom): self
-    {
-        $this->Nom = $Nom;
+        public function setLequipe(?Equipe $lequipe): self
+        {
+            $this->lequipe = $lequipe;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    public function getPrenom(): ?string
-    {
-        return $this->Prenom;
-    }
+        public function isVerified(): bool
+        {
+            return $this->isVerified;
+        }
 
-    public function setPrenom(string $Prenom): self
-    {
-        $this->Prenom = $Prenom;
+        public function setIsVerified(bool $isVerified): self
+        {
+            $this->isVerified = $isVerified;
 
-        return $this;
-    }
-
-    public function getLequipe(): ?equipe
-    {
-        return $this->lequipe;
-    }
-
-    public function setLequipe(?equipe $lequipe): self
-    {
-        $this->lequipe = $lequipe;
-
-        return $this;
-    }
+            return $this;
+        }
 }

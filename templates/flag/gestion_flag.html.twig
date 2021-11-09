@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Flags{% endblock %}
+
+{% block body %}
+
+        {{ form_start(form) }}
+        <section class="h-100 bg-dark">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-6 d-none d-xl-block">
+                                    <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/img4.jpg" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card-body p-md-5 text-black">
+                                        <h3 class="h1 fw-bold mb-4">Gestion des flags</h3>
+                                        <div class="row">
+                                            <div class="col-xl-11 ">
+                                                <div class="form-outline">
+                                                    {{ form_row(form.nID) }}
+</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-11 ">
+                                                <div class="form-outline">
+                                                    {{ form_row(form.titreQuestion) }}
+</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-11 ">
+                                                <div class="form-outline">
+                                                    {{ form_row(form.textQuote) }}
+</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-11 ">
+                                                <div class="form-outline">
+                                                    {{ form_row(form.textReponse) }}
+</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-11 form-outline">
+                                                {{ form_row(form.points) }}
+</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="submit" class="btn btn-dark btn-lg btn-block">Soumettre</button>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EquipeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\ReponseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-    /**
-     * @ORM\Entity(repositoryClass=ReponseRepository::class)
-     */
+/**
+ * @ORM\Entity(repositoryClass=ReponseRepository::class)
+ */
     class Reponse
     {
         /**
@@ -53,7 +51,8 @@ use Doctrine\ORM\Mapping as ORM;
          * @ORM\ManyToOne(targetEntity=Flag::class, inversedBy="lesreponses")
          */
         private $leflag;
-    
+
+
        
         public function getId(): ?int
         {
@@ -143,8 +142,5 @@ use Doctrine\ORM\Mapping as ORM;
 
             return $this;
         }
-    
-        
-    
-        
+  
     }

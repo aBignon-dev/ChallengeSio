@@ -27,19 +27,21 @@ class Equipe
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="lequipe")
      */
-    private $lesUsers;
+    private $lesusers;
 
     /**
      * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="lequipe")
      */
     private $lesreponses;
 
+    
+
   
 
     public function __construct()
     {
         
-        $this->lesUsers = new ArrayCollection();
+        $this->lesusers = new ArrayCollection();
         $this->lesreponses = new ArrayCollection();
     }
 
@@ -65,13 +67,13 @@ class Equipe
      */
     public function getLesUsers(): Collection
     {
-        return $this->lesUsers;
+        return $this->lesusers;
     }
 
     public function addLesUser(User $lesUser): self
     {
-        if (!$this->lesUsers->contains($lesUser)) {
-            $this->lesUsers[] = $lesUser;
+        if (!$this->lesusers->contains($lesUser)) {
+            $this->lesusers[] = $lesUser;
             $lesUser->setLequipe($this);
         }
 
@@ -80,7 +82,7 @@ class Equipe
 
     public function removeLesUser(User $lesUser): self
     {
-        if ($this->lesUsers->removeElement($lesUser)) {
+        if ($this->lesusers->removeElement($lesUser)) {
             // set the owning side to null (unless already changed)
             if ($lesUser->getLequipe() === $this) {
                 $lesUser->setLequipe(null);
@@ -119,6 +121,8 @@ class Equipe
 
         return $this;
     }
+
+    
 
     
 }
